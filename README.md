@@ -1,6 +1,6 @@
 # CockroachDB on Fly.io
 
-> **Note:** this app requires unreleased Fly.io features, it won't quite work yet.
+> **Note:** this app requires version 0.0.223 or greater of the Fly CLI. Run `flyctl version update` before you follow these instructions.
 
 This is an example CockroachDB cluster that runs on multiple Fly.io regions.
 
@@ -30,6 +30,15 @@ Deploying this app is relatively simple:
     Connecting to cockroachdb-example.internal... complete
     Cluster successfully initialized
     ```
+6. Scale to 3 nodes
+    ```bash
+    > fly scale count 3
+    Count changed to 3
+    ```
+7. View CockroachDB status
+   ```bash
+   fly ssh console -C '/cockroach/cockroach node status --insecure'
+   ```
 
 ## Hook up Grafana
 
