@@ -1,0 +1,15 @@
+app = "cockroachdb-example"
+
+kill_signal = "SIGINT"
+kill_timeout = 60
+
+[metrics]
+    port = 8080
+    path = "/_status/vars"
+
+[mount]
+source="cdb_data"
+destination="/cockroach/cockroach-data"
+
+[experimental]
+  cmd = ["shell", "start_fly.sh"]
