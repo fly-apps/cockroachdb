@@ -36,28 +36,13 @@ kill_timeout = 300
   [services.concurrency]
     hard_limit = 1000
     soft_limit = 200
+    type = "connections"
 
   [[services.ports]]
     handlers = []
     port = 10000
 
   [[services.tcp_checks]]
+    grace_period = "60s"
     interval = 10000
     timeout = 5000
-    grace_period = "60s"
-
-[[services]]
-  internal_port = 8080
-  protocol = "tcp"
-
-  [services.concurrency]
-    hard_limit = 100
-    soft_limit = 20
-
-  [[services.ports]]
-    handlers = []
-    port = 80
-
-  [[services.ports]]
-    handlers = []
-    port = 443

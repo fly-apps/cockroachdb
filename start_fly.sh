@@ -17,7 +17,7 @@ echo exec /cockroach/cockroach start \
   --locality=region=$FLY_REGION \
   --advertise-addr=$(hostname -s).vm.$FLY_APP_NAME.internal \
   --http-addr 0.0.0.0 \
-  --join=$FLY_APP_NAME.internal
+  --join=$FLY_APP_NAME.fly.dev:10000
 exec /cockroach/cockroach start \
   --logtostderr \
   --certs-dir=/cockroach/cockroach-certs \
@@ -25,4 +25,4 @@ exec /cockroach/cockroach start \
   --locality=region=$FLY_REGION \
   --advertise-addr=$(hostname -s).vm.$FLY_APP_NAME.internal \
   --http-addr 0.0.0.0 \
-  --join=$FLY_APP_NAME.internal
+  --join=$FLY_APP_NAME.fly.dev:10000

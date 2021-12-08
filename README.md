@@ -18,10 +18,10 @@ Deploying this app is relatively simple:
     ```
 6. Generate the Node certificate and keypair
 
-    _When generating the certificate, make sure to add external domains otherwise, e.g. `<app_name>.fly.dev.`, `db.example.com`_
+    _When generating the certificate, you can add external domains as well, e.g. `db.example.com`_
 
     ```bash
-    > cockroach cert create-node --certs-dir=<absolute_path_to_certificates_directory> --ca-key=<absolute_path_to_ca_key_file> 127.0.0.1 localhost <app_name>.internal "*.vm.<app_name>.internal" "*.nearest.of.<app_name>.internal"
+    > cockroach cert create-node --certs-dir=<absolute_path_to_certificates_directory> --ca-key=<absolute_path_to_ca_key_file> 127.0.0.1 localhost <app_name>.internal "*.vm.<app_name>.internal" "*.nearest.of.<app_name>.internal" <app_name>.fly.dev
     ```
 7. Generate the root user certificate and keypair
     ```bash
@@ -61,12 +61,12 @@ Deploying this app is relatively simple:
     ```
 12. Init the cluster:
     ```bash
-    > cockroach init --cluster-name=<app_name> --host=<app_name>.fly.dev --certs-dir=<absolute_path_to_certificates_directory>
+    > cockroach init --cluster-name=<app_name> --host=<app_name>.fly.dev:10000 --certs-dir=<absolute_path_to_certificates_directory>
     Cluster successfully initialized
     ```
 13. View CockroachDB status
    ```bash
-   > cockroach node status --host=<app_name>.fly.dev --certs-dir=<absolute_path_to_certificates>
+   > cockroach node status --host=<app_name>.fly.dev:10000 --certs-dir=<absolute_path_to_certificates>
    ```
 
 ## Hook up Grafana
