@@ -3,18 +3,31 @@ app = "cockroachdb-example"
 kill_signal = "SIGINT"
 kill_timeout = 300
 
-[metrics]
-  port = 8080
-  path = "/_status/vars"
+[checks]
 
-[[mounts]]
-  source = "crdb_data"
-  destination = "/cockroach/cockroach-data"
+  [checks.crdb_live]
+    grace_period = "60s"
+    interval = "10s"
+    method = "get"
+    path = "/health"
+    port = 8080
+    protocol = "https"
+    timeout = "5s"
+    tls_skip_verify = true
+    type = "http"
 
 [experimental]
-  cmd = ["shell", "start_fly.sh"]
   auto_rollback = false
+  cmd = ["shell", "start_fly.sh"]
   private_network = true
+
+[metrics]
+  path = "/_status/vars"
+  port = 8080
+
+[[mounts]]
+  destination = "/cockroach/cockroach-data"
+  source = "crdb_data"
 
 [[services]]
   internal_port = 26257
@@ -26,14 +39,25 @@ kill_timeout = 300
 
   [[services.ports]]
     handlers = []
-    port = 26257
+    port = 10000
 
-  [[services.http_checks]]
+  [[services.tcp_checks]]
     interval = 10000
+    timeout = 5000
     grace_period = "60s"
-    method = "get"
-    path = "/health"
-    protocol = "https"
-    timeout = 10000
-    tls_skip_verify = true
 
+[[services]]
+  internal_port = 8080
+  protocol = "tcp"
+
+  [services.concurrency]
+    hard_limit = 100
+    soft_limit = 20
+
+  [[services.ports]]
+    handlers = []
+    port = 80
+
+  [[services.ports]]
+    handlers = []
+    port = 443
