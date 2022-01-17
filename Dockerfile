@@ -1,4 +1,4 @@
-FROM cockroachdb/cockroach:v21.2.2
+FROM cockroachdb/cockroach:v21.2.4
 
 RUN microdnf install bind-utils
 

@@ -61,12 +61,12 @@ Deploying this app is relatively simple:
     ```
 12. Init the cluster:
     ```bash
-    > cockroach init --cluster-name=<app_name> --host=<app_name>.fly.dev:10000 --certs-dir=<absolute_path_to_certificates_directory>
+    > cockroach init --cluster-name=<app_name> --host=<app_name>.fly.dev --certs-dir=<absolute_path_to_certificates_directory>
     Cluster successfully initialized
     ```
 13. View CockroachDB status
     ```bash
-    > cockroach node status --host=<app_name>.fly.dev:10000 --certs-dir=<absolute_path_to_certificates>
+    > cockroach node status --host=<app_name>.fly.dev --certs-dir=<absolute_path_to_certificates>
     ```
 
 ## Hook up Grafana

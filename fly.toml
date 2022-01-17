@@ -40,7 +40,7 @@ kill_timeout = 120
 
   [[services.ports]]
     handlers = []
-    port = 10000
+    port = 26257
 
   [[services.tcp_checks]]
     grace_period = "60s"
