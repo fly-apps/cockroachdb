@@ -1,4 +1,5 @@
-FROM cockroachdb/cockroach:v21.1.2
+FROM cockroachdb/cockroach:v21.2.4
 
-ADD init_cluster.sh /cockroach/
+RUN microdnf install bind-utils
+
 ADD start_fly.sh /cockroach/
